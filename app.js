@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 require("./src/db/mongoose");
-const Task = require("./src/models/task");
+const Task = require("./src/db/models");
 const taskRouter = require("./src/router/task");
 
 const app = express();
@@ -13,10 +13,9 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("list", { newListItem });
   Task.find({})
-    .then((tasks) => {
-      res.send(tasks);
+    .then((newListItem) => {
+      res.render("list", { newListItem });
     })
     .catch((e) => res.status(500).send(e));
 });
