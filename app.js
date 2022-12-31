@@ -13,14 +13,17 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
+  // Promise.reject()
   Task.find({})
     .then((newListItem) => {
       res.render("list", { newListItem });
     })
-    .catch((e) => res.status(500).send(e));
+    .catch((e) => {
+      res.render("list", { error: true });
+    });
 });
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
   n = req.body.namee;
   desc = req.body.description;
 
@@ -30,12 +33,12 @@ app.post("/", (req, res) => {
     date: new Date().toLocaleString().split(",")[0],
     time: new Date().getTime(),
   });
-  item.save();
+  await item.save();
   res.redirect("/");
 });
 
-app.post("/delete", (req, res) => {
-  Item.findByIdAndRemove(req.body.checkbox, (err) => {
+app.post("/delete/:id", async (req, res) => {
+  await Item.findByIdAndRemove(req.params.id, (err) => {
     if (!err) {
       console.log("Successfully deleted");
       res.redirect("/");
