@@ -1,12 +1,11 @@
-const Task = require("../db/models");
-
+import Task from "../db/models";
 /**
+ *
  * Get all tasks from database
- * @param {object} req
- * @param {object} res
+ *
  */
 
-const getAllTasks = async (req, res) => {
+export const getAllTasks = async (req, res) => {
   // Promise.reject()
   try {
     const newListItem = await Task.find({});
@@ -17,54 +16,49 @@ const getAllTasks = async (req, res) => {
 };
 
 /**
+ *
  * Add a task to database
- * @param {object} req
- * @param {object} res
+ *
  */
-const postTask = async (req, res) => {
+export const postTask = async (req, res) => {
   try {
-    let currrentDate = new Date();
+    const { name, description, date, time } = req.body;
     const item = new Task({
-      name: req.body.name,
-      description: req.body.description,
-      date: currrentDate.toLocaleString().split(",")[0],
-      time:
-        currrentDate.getHours() +
-        " : " +
-        currrentDate.getMinutes() +
-        " : " +
-        currrentDate.getSeconds(),
+      name: name,
+      description: description,
+      date: date,
+      time: time,
     });
 
     await item.save();
     res.redirect("/");
   } catch (e) {
-    console.log(e);
+    res.render("list", { error: true });
   }
 };
 
 /**
+ *
  * Provide edit form for task
- * @param {object} req
- * @param {object} res
+ *
  */
 
-const editTask = async (req, res) => {
+export const editTask = async (req, res) => {
   try {
     let id = req.params.id;
     const data = await Task.findById(id);
     res.render("edit", { newListItem: data });
   } catch (e) {
-    console.log(e);
+    res.render("list", { error: true });
   }
 };
 
 /**
+ *
  * Update the edited task
- * @param {object} req
- * @param {object} res
+ *
  */
-const updateTask = async (req, res) => {
+export const updateTask = async (req, res) => {
   try {
     let dataRecords = {
       name: req.body.name,
@@ -74,33 +68,19 @@ const updateTask = async (req, res) => {
     await Task.findByIdAndUpdate(req.body.id, dataRecords);
     res.redirect("/");
   } catch (e) {
-    console.log(e);
+    res.render("list", { error: true });
   }
 };
 
 /**
+ *
  * Delete a particular task
- * @param {object} req
- * @param {object} res
+ *
  */
-const deleteTask = async (req, res) => {
+export const deleteTask = async (req, res) => {
   try {
-    let id = req.params.id;
-    await Task.findByIdAndRemove(id, (err) => {
-      if (!err) {
-        console.log("Successfully deleted");
-        res.redirect("/");
-      }
-    });
+    await Task.findByIdAndRemove(req.params.id);
   } catch (e) {
-    console.log(e);
+    res.render("list", { error: true });
   }
-};
-
-module.exports = {
-  getAllTasks,
-  postTask,
-  editTask,
-  updateTask,
-  deleteTask,
 };

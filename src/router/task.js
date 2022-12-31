@@ -1,12 +1,13 @@
-const express = require("express");
+import express from "express";
 const router = new express.Router();
-const {
+
+import {
   getAllTasks,
   postTask,
   editTask,
   updateTask,
   deleteTask,
-} = require("../controller/task");
+} from "../controller/task";
 
 //route for getting all task
 router.get("/", getAllTasks);

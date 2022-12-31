@@ -1,9 +1,29 @@
 <%- include("header") -%>
+  
 <div class="box1" id="heading">       
-    <h1 class="heading">Today</h1>
-</div>        
+    <h1 class="heading">Filter Tasks</h1>
+</div>
+<div class="filter-box">
+    <div class="filter">
+        <select class="form-control" name="fltremptype">
+          <option value="Hourly" class="b">Upcoming</option>
+          <option value="Fixed" class="b">Finished</option>
+        </select>
+      </div>
+      <div class="submit">
+        <input
+          type="submit"
+          class="form-control"
+          name="submit"
+          placeholder="Filter"
+        />
+      </div>
+</div>
+
 <div class="box">       
- 
+    <div class="box1" id="heading">       
+        <h1 class="heading">All Tasks</h1>
+    </div>      
     
 <% if(locals.error){ %>
     <button onclick="window.location.reload()">Reload</button>
@@ -35,9 +55,27 @@
 <% } %>
 
 <div class="title-form"><h2>Fill in the forms to add the items</h2></div>
-    <form class="item" action="/" method="post">
-        <input type="text" name="name"  placeholder="name" required><hr>
-        <input type="text" name="description"  placeholder="description" required><hr>
-        <button class="b" type="submit"><span class="s2">Add</span></button>
+
+    <form class="input-form" action="/" method="post">
+        <div class="form-box">
+            <div><label for="name">Name</label></div>
+            <div><input type="text" name="name"  placeholder="name" class="form-input" required></div>
+        </div>
+        <div class="form-box">
+            <div><label for="name">Description</label></div>
+            <div><input type="text" name="description"  placeholder="description" class="form-input" required></div>
+        </div>
+        <div class="form-box">
+            <div><label for="name">Date</label></div>
+            <div><input type="date" name="date" class="date-picker" class="form-input" required></div>
+        </div>
+        <div class="form-box">
+            <div><label for="name">Time</label></div>
+            <div><input type="time" name="time" class="time-picker" class="form-input" required></div>
+        </div>
+        <div class="form-box">
+            <div><button class="b" type="submit"><span class="s2">Add</span></button></div>  
+        </div>
+        
     </form>
 </div>
