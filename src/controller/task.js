@@ -1,4 +1,5 @@
 import Task from "../db/models";
+
 /**
  *
  * Get all tasks from database
@@ -47,6 +48,7 @@ export const editTask = async (req, res) => {
   try {
     let id = req.params.id;
     const data = await Task.findById(id);
+    console.log(data);
     res.render("edit", { newListItem: data });
   } catch (e) {
     res.render("list", { error: true });
@@ -59,10 +61,13 @@ export const editTask = async (req, res) => {
  *
  */
 export const updateTask = async (req, res) => {
+  console.log(req.body);
   try {
     let dataRecords = {
       name: req.body.name,
       description: req.body.description,
+      date: req.body.date,
+      time: req.body.time,
     };
 
     await Task.findByIdAndUpdate(req.body.id, dataRecords);
@@ -80,6 +85,7 @@ export const updateTask = async (req, res) => {
 export const deleteTask = async (req, res) => {
   try {
     await Task.findByIdAndRemove(req.params.id);
+    res.redirect("/");
   } catch (e) {
     res.render("list", { error: true });
   }

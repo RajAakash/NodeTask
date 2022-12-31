@@ -54,16 +54,7 @@ p {
   font-size: 20px;
   margin-left: 28px;
 }
-.round {
-  position: relative;
-}
-.round input[type="checkbox"]:checked + label {
-  background-color: #7037e9;
-  border-color: #7037e9;
-}
-.round input[type="checkbox"]:checked + label:after {
-  opacity: 1;
-}
+
 .b {
   background-color: rgb(35, 82, 200);
   text-align: center;
@@ -98,27 +89,7 @@ select {
 form.item {
   text-align: center;
 }
-.round label {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  height: 28px;
-  left: 10px;
-  border-radius: 50%;
-  top: 0;
-  width: 28px;
-}
-.round label:after {
-  border: 2px solid #fff;
-  border-top: none;
-  border-right: none;
-  height: 6px;
-  left: 7px;
-  opacity: 0;
-  top: 8px;
-  transform: rotate(-45deg);
-  width: 12px;
-}
+
 .item {
   border-radius: 2px;
   border: 2px solid black;

@@ -32,15 +32,15 @@
     <form action="/delete" method="post" class="details">
         <div class="items">
             <div class="division">
-                <div class="desc-box">
-                    <p>id: <%= newListItem[i]._id %></p>
-                    <p>Name:  <%= newListItem[i].name %></p>
-                    <p>Description:  <%= newListItem[i].description %></p>
-                </div>
                 <div class="date-box">
                     <p>Date: <%= newListItem[i].date%></p>
                     <p>Time: <%= newListItem[i].time%></p>
                 </div>
+                <div class="desc-box">
+                    <p>Name:  <%= newListItem[i].name %></p>
+                    <p>Description:  <%= newListItem[i].description %></p>
+                </div>
+                
                 <div class="button-box">
                     <button class="b"><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
                     <button class="b"><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
@@ -58,19 +58,19 @@
 
     <form class="input-form" action="/" method="post">
         <div class="form-box">
-            <div><label for="name">Name</label></div>
+            <div class="label-box1"><label for="name">Name</label></div>
             <div><input type="text" name="name"  placeholder="name" class="form-input" required></div>
         </div>
         <div class="form-box">
-            <div><label for="name">Description</label></div>
+            <div class="label-box1"><label for="name">Description</label></div>
             <div><input type="text" name="description"  placeholder="description" class="form-input" required></div>
         </div>
         <div class="form-box">
-            <div><label for="name">Date</label></div>
+            <div class="label-box1"><label for="name">Date</label></div>
             <div><input type="date" name="date" class="date-picker" class="form-input" required></div>
         </div>
         <div class="form-box">
-            <div><label for="name">Time</label></div>
+            <div class="label-box1"><label for="name">Time</label></div>
             <div><input type="time" name="time" class="time-picker" class="form-input" required></div>
         </div>
         <div class="form-box">
