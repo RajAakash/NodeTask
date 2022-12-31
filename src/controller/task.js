@@ -1,81 +1,106 @@
 const Task = require("../db/models");
 
-const testPage = (req, res) => {
-  res.send("From a new file");
-};
+/**
+ * Get all tasks from database
+ * @param {object} req
+ * @param {object} res
+ */
 
-const getAllProducts = async (req, res) => {
+const getAllTasks = async (req, res) => {
   // Promise.reject()
-  await Task.find({})
-    .then((newListItem) => {
-      res.render("list", { newListItem });
-    })
-    .catch((e) => {
-      res.render("list", { error: true });
+  try {
+    const newListItem = await Task.find({});
+    res.render("list", { newListItem });
+  } catch (e) {
+    res.render("list", { error: true });
+  }
+};
+
+/**
+ * Add a task to database
+ * @param {object} req
+ * @param {object} res
+ */
+const postTask = async (req, res) => {
+  try {
+    let currrentDate = new Date();
+    const item = new Task({
+      name: req.body.name,
+      description: req.body.description,
+      date: currrentDate.toLocaleString().split(",")[0],
+      time:
+        currrentDate.getHours() +
+        " : " +
+        currrentDate.getMinutes() +
+        " : " +
+        currrentDate.getSeconds(),
     });
+
+    await item.save();
+    res.redirect("/");
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-const postProduct = async (req, res) => {
-  n = req.body.namee;
-  desc = req.body.description;
+/**
+ * Provide edit form for task
+ * @param {object} req
+ * @param {object} res
+ */
 
-  const item = new Task({
-    name: n,
-    description: desc,
-    date: new Date().toLocaleString().split(",")[0],
-    time:
-      new Date().getHours() +
-      " : " +
-      new Date().getMinutes() +
-      " : " +
-      new Date().getSeconds(),
-  });
-  await item.save();
-  res.redirect("/");
+const editTask = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const data = await Task.findById(id);
+    res.render("edit", { newListItem: data });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-const editProduct = async (req, res) => {
-  var id = req.params.id;
-  await Task.findById(id)
-    .then((data) => {
-      res.render("edit", { newListItem: data });
-    })
-    .catch((err) => {
-      console.log(err);
+/**
+ * Update the edited task
+ * @param {object} req
+ * @param {object} res
+ */
+const updateTask = async (req, res) => {
+  try {
+    let dataRecords = {
+      name: req.body.name,
+      description: req.body.description,
+    };
+
+    await Task.findByIdAndUpdate(req.body.id, dataRecords);
+    res.redirect("/");
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+/**
+ * Delete a particular task
+ * @param {object} req
+ * @param {object} res
+ */
+const deleteTask = async (req, res) => {
+  try {
+    let id = req.params.id;
+    await Task.findByIdAndRemove(id, (err) => {
+      if (!err) {
+        console.log("Successfully deleted");
+        res.redirect("/");
+      }
     });
-};
-
-const updateProducts = async (req, res) => {
-  var dataRecords = {
-    name: req.body.uname,
-    description: req.body.desc,
-  };
-
-  await Task.findByIdAndUpdate(req.body.id, dataRecords)
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const deleteProducts = async (req, res) => {
-  console.log(res);
-  var id = req.params.id;
-  await Task.findByIdAndRemove(id, (err) => {
-    if (!err) {
-      console.log("Successfully deleted");
-      res.redirect("/");
-    }
-  });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = {
-  testPage,
-  getAllProducts,
-  postProduct,
-  editProduct,
-  updateProducts,
-  deleteProducts,
+  getAllTasks,
+  postTask,
+  editTask,
+  updateTask,
+  deleteTask,
 };

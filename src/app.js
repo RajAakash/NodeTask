@@ -14,7 +14,5 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.listen(3000, () => {
-  console.log(__dirname);
-  console.log(process.cwd());
   console.log("listening on port 3000.");
 });

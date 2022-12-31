@@ -1,24 +1,26 @@
 const express = require("express");
 const router = new express.Router();
 const {
-  testPage,
-  getAllProducts,
-  postProduct,
-  editProduct,
-  updateProducts,
-  deleteProducts,
+  getAllTasks,
+  postTask,
+  editTask,
+  updateTask,
+  deleteTask,
 } = require("../controller/task");
 
-router.get("/test", testPage);
+//route for getting all task
+router.get("/", getAllTasks);
 
-router.get("/", getAllProducts);
+//route for adding a task
+router.post("/", postTask);
 
-router.post("/", postProduct);
+//route for edit page
+router.get("/edit/:id", editTask);
 
-router.get("/edit/:id", editProduct);
+//api for updating a task
+router.post("/update", updateTask);
 
-router.post("/update", updateProducts);
-
-router.get("/delete/:id", deleteProducts);
+//route for deleting a task
+router.get("/delete/:id", deleteTask);
 
 module.exports = router;
