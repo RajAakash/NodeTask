@@ -1,0 +1,43 @@
+<%- include("header") -%>
+<div class="box1" id="heading">       
+    <h1 class="heading">Today</h1>
+</div>        
+<div class="box">       
+ 
+    
+<% if(locals.error){ %>
+    <button onclick="window.location.reload()">Reload</button>
+<% } else { %>
+    <% for(var i=0;i<newListItem.length;i++) { %>
+    <form action="/delete" method="post" class="details">
+        <div class="items">
+            <div class="division">
+                <div class="desc-box">
+                    <p>id: <%= newListItem[i]._id %></p>
+                    <p>Name:  <%= newListItem[i].name %></p>
+                    <p>Description:  <%= newListItem[i].description %></p>
+                </div>
+                <div class="date-box">
+                    <p>Date: <%= newListItem[i].date%></p>
+                    <p>Time: <%= newListItem[i].time%></p>
+                </div>
+                <div class="button-box">
+                    <button class="b"><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
+                    <button class="b"><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
+            
+                </div>
+            </div>
+            <br>
+        </div>         
+    </form> 
+    <% } %>
+
+<% } %>
+
+<div class="title-form"><h2>Fill in the forms to add the items</h2></div>
+    <form class="item" action="/" method="post">
+        <input type="text" name="namee"  placeholder="name" required><hr>
+        <input type="text" name="description"  placeholder="description" required><hr>
+        <button class="b" type="submit"><span class="s2">Add</span></button>
+    </form>
+</div>
