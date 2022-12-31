@@ -13,6 +13,7 @@
         <div class="items">
             <div class="division">
                 <div class="desc-box">
+                    <p>id: <%= newListItem[i]._id %></p>
                     <p>Name:  <%= newListItem[i].name %></p>
                     <p>Description:  <%= newListItem[i].description %></p>
                 </div>
@@ -21,8 +22,8 @@
                     <p>Time: <%= newListItem[i].time%></p>
                 </div>
                 <div class="button-box">
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
+                    <button><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
             
                 </div>
             </div>

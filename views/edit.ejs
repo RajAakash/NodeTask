@@ -1,16 +1,35 @@
 <%- include("header") -%>
 
 <div class="edit-box">
-  <form action="/delete" method="post" class="details">
+  <form action="/update" method="post" class="details">
     <div class="edit-box-form">
-      <input type="text" name="namee" placeholder="name" required />
       <hr />
-      <input
-        type="text"
-        name="description"
-        placeholder="description"
-        required
-      />
+      <input type="hidden" name="id" value="<%= newListItem._id %>" />
+
+      <div class="form-group">
+        <label for="uname">Name</label>
+        <input
+          type="text"
+          required
+          name="uname"
+          value="<%= newListItem.name %>"
+          placeholder="Enter Your Name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <input
+          type="text"
+          required
+          name="desc"
+          value="<%= newListItem.description %>"
+          placeholder="Enter Your Name"
+        />
+      </div>
+      <div class="form-group">
+        <input type="submit" name="submit" value="submit" />
+      </div>
       <hr />
     </div>
   </form>

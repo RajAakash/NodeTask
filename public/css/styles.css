@@ -1,3 +1,8 @@
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
 body {
   background-image: url("todo2.png");
 

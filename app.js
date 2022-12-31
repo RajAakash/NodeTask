@@ -37,8 +37,35 @@ app.post("/", async (req, res) => {
   res.redirect("/");
 });
 
-app.post("/delete/:id", async (req, res) => {
-  await Item.findByIdAndRemove(req.params.id, (err) => {
+app.get("/edit/:id", function (req, res, next) {
+  var id = req.params.id;
+  Task.findById(id)
+    .then((data) => {
+      res.render("edit", { newListItem: data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.post("/update", async (req, res) => {
+  var dataRecords = {
+    name: req.body.uname,
+    description: req.body.desc,
+  };
+
+  await Task.findByIdAndUpdate(req.body.id, dataRecords)
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/delete/:id", async (req, res) => {
+  var id = req.params.id;
+  await Task.findByIdAndRemove(id, (err) => {
     if (!err) {
       console.log("Successfully deleted");
       res.redirect("/");
@@ -46,6 +73,6 @@ app.post("/delete/:id", async (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("listening on port 3000.");
 });
