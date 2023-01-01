@@ -117,6 +117,10 @@ form.item {
   width: 50%;
   margin: auto;
 }
+.edit-box {
+  width: 80vw;
+  margin: auto;
+}
 /* //////Tabs CSS////////// */
 .tabs {
   left: 50%;

@@ -9,8 +9,6 @@ import {
   deleteTask,
 } from "../controller/task";
 
-//display form router
-
 //route for getting all task
 router.get("/", getAllTasks);
 
