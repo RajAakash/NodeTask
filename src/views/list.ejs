@@ -1,29 +1,28 @@
 <%- include("header") -%>
   
-<div class="box1" id="heading">       
-    <h1 class="heading">Filter Tasks</h1>
-</div>
-<div class="filter-box">
-    <div class="filter">
-        <select class="form-control" name="fltremptype">
-          <option value="Hourly" class="b">Upcoming</option>
-          <option value="Fixed" class="b">Finished</option>
-        </select>
-      </div>
-      <div class="submit">
-        <input
-          type="submit"
-          class="form-control"
-          name="submit"
-          placeholder="Filter"
-        />
-      </div>
-</div>
+  
+<h1 class="heading">Tasks</h1>
 
-<div class="box">       
-    <div class="box1" id="heading">       
-        <h1 class="heading">All Tasks</h1>
-    </div>      
+
+
+<div class="tabs">
+    <div class="tabs-content">
+        <ul>
+            <li title="Features">
+              <label for="tab1" role="button"><br /><span>All  </span></label>
+            </li>
+            <li title="upcoming">
+              <label for="tab2" role="button"
+                ><br /><span>Upcoming</span></label
+              >
+            </li>
+            <li title="completed">
+              <label for="tab3" role="button"><br /><span>Completed</span></label>
+            </li>
+          </ul>  
+    </div>
+    <div class="slider"><div class="indicator"></div></div>  
+    
     
 <% if(locals.error){ %>
     <button onclick="window.location.reload()">Reload</button>
@@ -59,21 +58,22 @@
     <form class="input-form" action="/" method="post">
         <div class="form-box">
             <div class="label-box1"><label for="name">Name</label></div>
-            <div><input type="text" name="name"  placeholder="name" class="form-input" required></div>
+            <div><input type="text" name="name"  class="form-input" required></div>
         </div>
         <div class="form-box">
             <div class="label-box1"><label for="name">Description</label></div>
-            <div><input type="text" name="description"  placeholder="description" class="form-input" required></div>
+            <div><textarea class="form-input" name="description" required rows="5" cols="50"></textarea></div>
         </div>
         <div class="form-box">
             <div class="label-box1"><label for="name">Date</label></div>
-            <div><input type="date" name="date" class="date-picker" class="form-input" required></div>
+            <div><input type="date" name="date" class="date-picker" class="form-input" pattern="\d{4}-\d{2}-\d{2}"required></div>
         </div>
         <div class="form-box">
             <div class="label-box1"><label for="name">Time</label></div>
             <div><input type="time" name="time" class="time-picker" class="form-input" required></div>
         </div>
         <div class="form-box">
+            <div></div>
             <div><button class="b" type="submit"><span class="s2">Add</span></button></div>  
         </div>
         

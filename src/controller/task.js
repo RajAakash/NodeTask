@@ -48,7 +48,6 @@ export const editTask = async (req, res) => {
   try {
     let id = req.params.id;
     const data = await Task.findById(id);
-    console.log(data);
     res.render("edit", { newListItem: data });
   } catch (e) {
     res.render("list", { error: true });
@@ -61,7 +60,6 @@ export const editTask = async (req, res) => {
  *
  */
 export const updateTask = async (req, res) => {
-  console.log(req.body);
   try {
     let dataRecords = {
       name: req.body.name,
