@@ -14,6 +14,7 @@ export const getAllTasks = async (req, res) => {
         date: 1,
         time: 1,
         name: 1,
+        description: 1,
         convertedDate: {
           $dateFromString: {
             dateString: {

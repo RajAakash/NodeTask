@@ -7,7 +7,6 @@
   <input type="radio" id="tab2" name="tab-control">
   <input type="radio" id="tab3" name="tab-control">  
   
-
   <ul>
     <li title="Features">
       <label for="tab1" role="button" 
@@ -26,10 +25,11 @@
       ><br /><a href= '?status=completed'>Completed</a></label>
     </li>
   </ul>
-    <!-- <div class="slider"><div class="indicator"></div></div> -->
+    
     <div class="content">
         <section>
             <h1>Tasks</h1>
+            <h3><%= newListItem.length  %> tasks found</h3>
             <% if(locals.error){ %>
                 <button onclick="window.location.reload()">Reload</button>
             <% } else { %>
@@ -43,12 +43,12 @@
                             </div>
                             <div class="desc-box">
                                 <p>Name:  <%= newListItem[i].name %></p>
-                                <p>Description:  <%= newListItem[i].description %></p>
+                                <p>Description: <%= newListItem[i].description %></p>
                             </div>
                             
                             <div class="button-box">
-                                <button class="b"><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
-                                <button class="b"><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
+                                <a href="/edit/<%= newListItem[i]._id %>" class="action">Edit</a>
+                                <a href="/delete/<%= newListItem[i]._id %>" class="action">Delete</a>
                         
                             </div>
                         </div>
@@ -75,22 +75,23 @@
             </div>
             <div class="form-boxx">
                 <label for="name" class="input-label">Description</label>
-                <textarea  name="description" required rows="5" cols="50"></textarea>
+                <textarea type="text"  name="description" required rows="5" cols="50"></textarea>
             </div>
             <div class="form-boxx">
                 <label for="name" class="input-label">Date</label>
-                <input type="date" name="date" class="date-picker" class="form-input" pattern="\d{4}-\d{2}-\d{2}"required>
+                <input type="date" name="date"  class="form-input" pattern="\d{4}-\d{2}-\d{2}"required>
             </div>
             <div class="form-boxx">
                 <label for="name" class="input-label">Time</label>
-                <input type="time" name="time" class="time-picker" class="form-input" required>
+                <input type="time" name="time" class="form-input" required>
             </div>
             <div class="form-boxx form-box1">
-                <button class="b b1" type="submit"><span class="s2">Add</span></button>
+                <button class="action b1" type="submit"><span class="s2">Add</span></button>
             </div>
         </form>
     </div>
     </div>
+    
     
     
     

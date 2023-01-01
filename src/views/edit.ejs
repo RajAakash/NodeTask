@@ -1,56 +1,52 @@
 <%- include("header") -%>
 <body>
-  <div class="input-form-box">
-    <form action="/update" method="post" class="details">
-      <div class="edit-box-form">
-        <hr />
+  <div class="formm">
+    <form class="input-form-box" action="/update" method="post">
+      <div class="form-boxx">
         <input type="hidden" name="id" value="<%= newListItem._id %>" />
+        <label for="name" class="input-label">Name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-input"
+          value="<%= newListItem.name %>"
+          required
+        />
+      </div>
+      <div class="form-boxx">
+        <label for="name" class="input-label">Description</label>
+        <textarea
+          name="description"
+          value="<%= newListItem.description %>"
+          required
+          rows="5"
+          cols="50"
+        ></textarea>
+      </div>
 
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            required
-            name="name"
-            value="<%= newListItem.name %>"
-            placeholder="Enter Your Name"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input
-            type="text"
-            required
-            name="description"
-            value="<%= newListItem.description %>"
-            placeholder="Enter Description"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="date">Description</label>
-          <input
-            type="date"
-            required
-            name="date"
-            value="<%= newListItem.date %>"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="time">Description</label>
-          <input
-            type="time"
-            required
-            name="time"
-            value="<%= newListItem.time %>"
-          />
-        </div>
-        <div class="form-group">
-          <input type="submit" name="submit" value="submit" />
-        </div>
-        <hr />
+      <div class="form-boxx">
+        <label for="name" class="input-label">Date</label>
+        <input
+          type="date"
+          name="date"
+          class="form-input"
+          value="<%= newListItem.date %>"
+          pattern="\d{4}-\d{2}-\d{2}"
+          required
+        />
+      </div>
+      <div class="form-boxx">
+        <label for="name" class="input-label">Time</label>
+        <input
+          type="time"
+          name="time"
+          class="form-input"
+          value="<%= newListItem.time %>"
+          required
+        />
+      </div>
+      <div class="form-boxx form-box1">
+        <button class="b b1" type="submit"><span class="s2">Add</span></button>
       </div>
     </form>
   </div>
