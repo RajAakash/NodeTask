@@ -33,8 +33,7 @@
             <% if(locals.error){ %>
                 <button onclick="window.location.reload()">Reload</button>
             <% } else { %>
-                <% for(var i=0;i<newListItem.length;i++) { %>
-                <form action="/delete" method="post" class="details">
+                <% for(var i=0;i<newListItem.length;i++) { %>           
                     <div class="items">
                         <div class="division">
                             <div class="date-box">
@@ -54,7 +53,6 @@
                         </div>
                         <br>
                     </div>         
-                </form> 
                 <% } %>
             
             <% } %>
