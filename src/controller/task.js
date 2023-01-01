@@ -7,15 +7,47 @@ import Task from "../db/models";
  */
 
 export const getAllTasks = async (req, res) => {
-  // Promise.reject()
+  const { status } = req.query;
+  let queryMatcher = [
+    {
+      $project: {
+        date: 1,
+        time: 1,
+        name: 1,
+        convertedDate: {
+          $dateFromString: {
+            dateString: {
+              $concat: ["$date", "$time"],
+            },
+            timezone: "+05:45",
+          },
+        },
+      },
+    },
+  ];
+  if (status === "upcoming") {
+    queryMatcher.push({
+      $match: { convertedDate: { $gt: new Date() } },
+    });
+  }
+  if (status === "completed") {
+    queryMatcher.push({
+      $match: { convertedDate: { $lte: new Date() } },
+    });
+  }
+  queryMatcher.push({
+    $sort: {
+      convertedDate: 1,
+    },
+  });
+
   try {
-    const newListItem = await Task.find({});
-    res.render("list", { newListItem });
+    const newListItem = await Task.aggregate(queryMatcher);
+    res.render("list", { newListItem, url: status });
   } catch (e) {
     res.render("list", { error: true });
   }
 };
-
 /**
  *
  * Add a task to database

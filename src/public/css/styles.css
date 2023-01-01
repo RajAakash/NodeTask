@@ -33,12 +33,6 @@ a:visited {
   text-decoration: none;
   color: inherit;
 }
-
-input[type="text"]:focus {
-  outline: none;
-  box-shadow: inset 0 -3px 0 0 tomato;
-}
-
 p {
   font-size: 20px;
   margin-left: 28px;
@@ -399,4 +393,7 @@ form.item {
   .tabs .content section h2 {
     display: block;
   }
+}
+.current-tab-indicator {
+  border-bottom: 2px solid #428bff;
 }
