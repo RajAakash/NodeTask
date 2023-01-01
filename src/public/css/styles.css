@@ -49,12 +49,15 @@ p {
   transform: translateX(-50%);
   margin: auto;
   cursor: pointer;
-
+  width: 112px;
   height: 40px;
   font-size: 18px;
   border-radius: 5px;
   border: 1px solid black;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
+}
+.form-box1 {
+  padding-left: 240px;
 }
 .filter {
   margin: auto;
@@ -90,35 +93,25 @@ form.item {
 }
 .button-box {
   margin: auto;
+  width: 83%;
+  display: flex;
 }
 .items {
   border-bottom: 1px solid black;
   margin: 10px;
 }
-.edit-box {
-  background-color: blue;
-}
-.input-form {
-  display: grid;
-  grid-template-rows: repeat(5, 1fr);
+.formm {
   width: 100%;
-  border: 2px solid gray;
-  border-radius: 5px;
-  font-size: 20px;
-}
-.label-box {
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  margin: auto;
-  padding: 20px;
-  height: 200px;
-}
-.form-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
+  border: 1px solid gray;
   padding: 10px;
-  width: 41%;
+  margin: auto;
+}
+.form-boxx {
+  padding-bottom: 25px;
+}
+.input-label {
+  width: 180px;
+  display: inline-block;
 }
 .form-input {
   width: 200px;
@@ -349,22 +342,7 @@ form.item {
   > section:nth-child(3) {
   display: block;
 }
-.tabs
-  input[name="tab-control"]:nth-of-type(4):checked
-  ~ ul
-  > li:nth-child(4)
-  > label {
-  cursor: default;
-  color: #428bff;
-}
-.tabs
-  input[name="tab-control"]:nth-of-type(4):checked
-  ~ ul
-  > li:nth-child(4)
-  > label
-  svg {
-  fill: #428bff;
-}
+
 @media (max-width: 600px) {
   .tabs
     input[name="tab-control"]:nth-of-type(4):checked

@@ -6,8 +6,12 @@
 
 
 <div class="tabs">
-    <div class="tabs-content">
-        <ul>
+<input type="radio" id="tab1" name="tab-control" checked>
+  <input type="radio" id="tab2" name="tab-control">
+  <input type="radio" id="tab3" name="tab-control">  
+  
+
+  <ul>
             <li title="Features">
               <label for="tab1" role="button"><br /><span>All  </span></label>
             </li>
@@ -20,62 +24,91 @@
               <label for="tab3" role="button"><br /><span>Completed</span></label>
             </li>
           </ul>  
-    </div>
-    <div class="slider"><div class="indicator"></div></div>  
     
-    
-<% if(locals.error){ %>
-    <button onclick="window.location.reload()">Reload</button>
-<% } else { %>
-    <% for(var i=0;i<newListItem.length;i++) { %>
-    <form action="/delete" method="post" class="details">
-        <div class="items">
-            <div class="division">
-                <div class="date-box">
-                    <p>Date: <%= newListItem[i].date%></p>
-                    <p>Time: <%= newListItem[i].time%></p>
-                </div>
-                <div class="desc-box">
-                    <p>Name:  <%= newListItem[i].name %></p>
-                    <p>Description:  <%= newListItem[i].description %></p>
-                </div>
-                
-                <div class="button-box">
-                    <button class="b"><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
-                    <button class="b"><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
+    <div class="slider"><div class="indicator"></div></div>
+    <div class="content">
+        <section>
+            <h1>All Tasks</h1>
+            <% if(locals.error){ %>
+                <button onclick="window.location.reload()">Reload</button>
+            <% } else { %>
+                <% for(var i=0;i<newListItem.length;i++) { %>
+                <form action="/delete" method="post" class="details">
+                    <div class="items">
+                        <div class="division">
+                            <div class="date-box">
+                                <p>Date: <%= newListItem[i].date%></p>
+                                <p>Time: <%= newListItem[i].time%></p>
+                            </div>
+                            <div class="desc-box">
+                                <p>Name:  <%= newListItem[i].name %></p>
+                                <p>Description:  <%= newListItem[i].description %></p>
+                            </div>
+                            
+                            <div class="button-box">
+                                <button class="b"><a href="/edit/<%= newListItem[i]._id %>">Edit</a></button>
+                                <button class="b"><a href="/delete/<%= newListItem[i]._id %>">Delete</a></button>
+                        
+                            </div>
+                        </div>
+                        <br>
+                    </div>         
+                </form> 
+                <% } %>
             
-                </div>
+            <% } %>
+        </section>
+        <section>
+            <h1>Upcoming Tasks</h1>
+        </section>   
+        <section>
+            <h1>Compelted Tasks</h1>
+        </section>
+    </div>  
+    <div class="title-form"><h2>Fill in the forms to add the items</h2></div>
+    <div class="formm">
+        <form class="input-form-box" action="/" method="post">
+            <div class="form-boxx">
+                <label for="name" class="input-label">Name</label>
+                <input type="text" name="name"  class="form-input" required>
             </div>
-            <br>
-        </div>         
-    </form> 
-    <% } %>
-
-<% } %>
-
-<div class="title-form"><h2>Fill in the forms to add the items</h2></div>
-
-    <form class="input-form" action="/" method="post">
-        <div class="form-box">
-            <div class="label-box1"><label for="name">Name</label></div>
-            <div><input type="text" name="name"  class="form-input" required></div>
-        </div>
-        <div class="form-box">
-            <div class="label-box1"><label for="name">Description</label></div>
-            <div><textarea class="form-input" name="description" required rows="5" cols="50"></textarea></div>
-        </div>
-        <div class="form-box">
-            <div class="label-box1"><label for="name">Date</label></div>
-            <div><input type="date" name="date" class="date-picker" class="form-input" pattern="\d{4}-\d{2}-\d{2}"required></div>
-        </div>
-        <div class="form-box">
-            <div class="label-box1"><label for="name">Time</label></div>
-            <div><input type="time" name="time" class="time-picker" class="form-input" required></div>
-        </div>
-        <div class="form-box">
-            <div></div>
-            <div><button class="b" type="submit"><span class="s2">Add</span></button></div>  
-        </div>
-        
-    </form>
+            <div class="form-boxx">
+                <label for="name" class="input-label">Description</label>
+                <textarea  name="description" required rows="5" cols="50"></textarea>
+            </div>
+            <div class="form-boxx">
+                <label for="name" class="input-label">Date</label>
+                <input type="date" name="date" class="date-picker" class="form-input" pattern="\d{4}-\d{2}-\d{2}"required>
+            </div>
+            <div class="form-boxx">
+                <label for="name" class="input-label">Time</label>
+                <input type="time" name="time" class="time-picker" class="form-input" required>
+            </div>
+            <div class="form-boxx form-box1">
+                <button class="b b1" type="submit"><span class="s2">Add</span></button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+    
+    
 </div>
+    
+    
+    
+    
+
+
+
+
+    
+        
+        
+       
+        
+            
+
+            
+            
+      
