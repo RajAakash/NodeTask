@@ -1,4 +1,4 @@
-# NodeTask to create Task manager using mongodb
+# Todo App
 This project is done in node.js as backend using local mongodb database and ejs template designed by css.
 
 # Description 
